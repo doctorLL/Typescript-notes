@@ -130,3 +130,48 @@ devServer: {
   }
 ```
 
+在使用element-ui时，点击表格一行编辑是，不能直接把数据用等号赋值给dialog，因为赋值的数据只是一个引用类型，赋值后会和赋值对象公用一个内存区域，解决办法：
+
+```
+let objData = obj.assign({},row);
+//数组
+let arrArr = arr.slice();
+```
+
+#### 在对第三方UI库进行二次封装时，可在调用组件中加入 v-bind=“$attr” 和 v-bind="$linstener",这样避免后续因为二次封装所使用的属性或者方法不全面的问题。
+
+![16a4e82b28f2b24c](E:\studyFIle\Typescript-notes\VUE\16a4e82b28f2b24c.png)
+
+#### .sync
+
+```
+<btn-compoents :foo.sync="bar"/>
+
+更新：
+this.$emit('update:foo',"tool");
+当你有需要在子组件修改父组件值的时候这个方法很好用
+```
+
+#### Computed的get和set
+
+当前后端所须的数据格式不一样时可使用，
+
+````
+computer：{
+	timeData:{
+		get(){
+			//获取到后端数据进行处理。
+		},
+		set(){
+			//发送数据时进行一定处理。
+		}
+	}
+}
+````
+
+#### Object .freeze;
+
+当数据量非常大时会出现显示卡顿现象，可使用Object .freeze来处理：
+
+this .item  =  Object .freeze ( Object . assign({} , this .item)
+
