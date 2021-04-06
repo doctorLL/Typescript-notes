@@ -1,1 +1,1 @@
-# Typescript-notes
+# L-Study-notes
